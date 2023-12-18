@@ -5,7 +5,7 @@ const router = require('./router');
 
 const uri = 'mongodb+srv://savinda:80221474@cluster0.ywjuznk.mongodb.net/?retryWrites=true&w=majority';
 
-const connect = async()=>{
+/*const connect = async()=>{
     try{
         await mongoose.connect(uri)
         console.log("connect !")
@@ -15,7 +15,7 @@ const connect = async()=>{
     }
 }
 
-// connect();
+// connect();*/
 
 const server = app.listen(3001,'127.0.0.1',()=>{
     console.log('lisning to server !');
