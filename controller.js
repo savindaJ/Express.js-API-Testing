@@ -1,47 +1,61 @@
 const User = require('./modal')
+const con = require('./server');
+const mysql = require("mysql2");
 
-const getUsers = (req,res,next)=>{
-    // User.find().then(responce=>{
-    //     res.json({responce})
-    // }).catch(err=>{
-    //     res.json({massage:err})
-    // });
-    res.json({state:"ok"})
+const getUsers = (req, res, next) => {
+    /*const insertQuery = "INSERT INTO customer (cusid, name, address, salary) VALUES (?, ?, ?, ?)";
+    const values = ['C0020', 'Alice Johnson', '987 Elm St', 80000.00];
+
+    connection.query(insertQuery, values, function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });*/
+    console.log("get called !")
 };
 
-const addUser = (req,res,next)=>{
-    const user = new User({
-        id:req.body.id,
-        name:req.body.name
+const addUser = (req, res, next) => {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "80221474",
+        insecureAuth: true,
+        database: "thogakade"
     });
 
-    user.save().then(responce=>{
-        res.json({responce})
-    }).catch(err=>{
-        res.json({massage:err})
-    })
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+    });
+    const insertQuery = "INSERT INTO customer (customerId, Name, address, salary) VALUES (?, ?, ?, ?)";
+    const values = ['C0021', 'express Johnson', '987 dhilli St', 100000.00];
+
+    con.query(insertQuery, values, function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+        res.json({massage:'ok'});
+    });
 }
 
-const updateUser = (req,res,next)=>{
+const updateUser = (req, res, next) => {
     const id = req.body.id;
-    const name = req.body.name; 
+    const name = req.body.name;
 
-    User.updateOne({id:id},{$set:{name:name}}).then(responce=>{
+    User.updateOne({id: id}, {$set: {name: name}}).then(responce => {
         res.json({responce})
-    }).catch(err=>{
-        res.json({massage:err})
+    }).catch(err => {
+        res.json({massage: err})
     });
 }
 
-const deleteUser = (req,res,next)=>{
+const deleteUser = (req, res, next) => {
     const id = req.body.id;
 
     User.deleteOne({
-        id:id
-    }).then(responce=>{
+        id: id
+    }).then(responce => {
         res.json({responce})
-    }).catch(err=>{
-        res.json({massage:err})
+    }).catch(err => {
+        res.json({massage: err})
     });
 }
 exports.getUsers = getUsers;

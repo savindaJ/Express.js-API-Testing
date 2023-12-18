@@ -22,3 +22,4 @@ const server = app.listen(3001,'127.0.0.1',()=>{
 });
 
 app.use('/api',router);
+exports.con = con;
