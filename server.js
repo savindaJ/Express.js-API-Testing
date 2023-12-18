@@ -1,7 +1,5 @@
 const app = require('./app');
-const mongoose = require('mongoose');
 const router = require('./router');
-const mysql = require('mysql2');
 
 /*var con = mysql.createConnection({
     host: "localhost",
