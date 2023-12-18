@@ -23,7 +23,7 @@ const addUser = (req, res, next) => {
     const values = [id,name,address,parseFloat(salary)];
 
     connection.query(insertQuery, values, function (err, result) {
-        if (err) throw err;
+        if (err) res.json(err.code);
         console.log("Number of records inserted: " + result.affectedRows);
         res.json({massage:'ok'});
     });
