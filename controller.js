@@ -32,6 +32,9 @@ const addUser = (req, res, next) => {
 const updateUser = (req, res, next) => {
     const id = req.body.id;
     const name = req.body.name;
+    const address = req.body.address;
+    const salary = req.body.salary;
+
 
 
 }
