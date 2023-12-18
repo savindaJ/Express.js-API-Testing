@@ -1,19 +1,21 @@
 const app = require('./app');
 const mongoose = require('mongoose');
-
 const router = require('./router');
+const mysql = require('mysql2');
 
-/*const connect = async()=>{
-    try{
-        await mongoose.connect(uri)
-        console.log("connect !")
-    }
-    catch(err){
-        console.log("not connect !",err)
-    }
-}
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "80221474",
+    insecureAuth : true
+});
 
-// connect();*/
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+
 
 const server = app.listen(3001,'127.0.0.1',()=>{
     console.log('listening to server !');
