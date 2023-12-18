@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 
 const router = require('./router');
 
-const uri = 'mongodb+srv://savinda:80221474@cluster0.ywjuznk.mongodb.net/?retryWrites=true&w=majority';
-
 /*const connect = async()=>{
     try{
         await mongoose.connect(uri)
