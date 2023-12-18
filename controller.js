@@ -33,11 +33,7 @@ const updateUser = (req, res, next) => {
     const id = req.body.id;
     const name = req.body.name;
 
-    User.updateOne({id: id}, {$set: {name: name}}).then(responce => {
-        res.json({responce})
-    }).catch(err => {
-        res.json({massage: err})
-    });
+
 }
 
 const deleteUser = (req, res, next) => {
