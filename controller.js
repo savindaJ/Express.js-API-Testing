@@ -35,7 +35,13 @@ const updateUser = (req, res, next) => {
     const address = req.body.address;
     const salary = req.body.salary;
 
-    const insertQuery = "UPDATE customer SET Name=? ,address=?, salary=? WHERE customerId=?";
+    const updateQuery = "UPDATE customer SET Name=? ,address=?, salary=? WHERE customerId=?";
+    const values = [name,address,parseFloat(salary),id];
+    connection.query(updateQuery, values, function (err, result) {
+        if (err) res.json(err.code);
+        console.log("Number of records updated !: " + result.affectedRows);
+        res.json({massage:'ok'});
+    });
 
 }
 
