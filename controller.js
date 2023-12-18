@@ -3,13 +3,11 @@ const connection = require('./connection');
 
 const getUsers = (req, res, next) => {
     const insertQuery = "SELECT * FROM customer";
-    // const values = ['C0020', 'Alice Johnson', '987 Elm St', 80000.00];
 
     connection.query(insertQuery, function (err, result) {
-        if (err) throw err;
+        if (err) res.json(err.code);
         res.json(result);
     });
-    console.log("get called !")
 };
 
 const addUser = (req, res, next) => {
@@ -21,16 +19,14 @@ const addUser = (req, res, next) => {
 
     console.log(id,name,address,salary);
 
-    res.json({massage:'ok'});
-
-   /* const insertQuery = "INSERT INTO customer (customerId, Name, address, salary) VALUES (?, ?, ?, ?)";
-    const values = ['C0022', 'express sina', '987 dubai St', 40000.00];
+    const insertQuery = "INSERT INTO customer (customerId, Name, address, salary) VALUES (?, ?, ?, ?)";
+    const values = [id,name,address,parseFloat(salary)];
 
     connection.query(insertQuery, values, function (err, result) {
         if (err) throw err;
         console.log("Number of records inserted: " + result.affectedRows);
         res.json({massage:'ok'});
-    });*/
+    });
 }
 
 const updateUser = (req, res, next) => {
