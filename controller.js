@@ -47,13 +47,11 @@ const updateUser = (req, res, next) => {
 
 const deleteUser = (req, res, next) => {
     const id = req.body.id;
-
-    User.deleteOne({
-        id: id
-    }).then(responce => {
-        res.json({responce})
-    }).catch(err => {
-        res.json({massage: err})
+    const updateQuery = "DELETE FROM customer WHERE customerId=?";
+    connection.query(updateQuery, id, function (err, result) {
+        if (err) res.json(err.code);
+        console.log("Number of records deleted !: " + result.affectedRows);
+        res.json({massage:'ok'});
     });
 }
 exports.getUsers = getUsers;
