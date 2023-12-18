@@ -2,37 +2,35 @@ const User = require('./modal')
 const connection = require('./connection');
 
 const getUsers = (req, res, next) => {
-    /*const insertQuery = "INSERT INTO customer (cusid, name, address, salary) VALUES (?, ?, ?, ?)";
-    const values = ['C0020', 'Alice Johnson', '987 Elm St', 80000.00];
+    const insertQuery = "SELECT * FROM customer";
+    // const values = ['C0020', 'Alice Johnson', '987 Elm St', 80000.00];
 
-    connection.query(insertQuery, values, function (err, result) {
+    connection.query(insertQuery, function (err, result) {
         if (err) throw err;
-        console.log("Number of records inserted: " + result.affectedRows);
-    });*/
+        res.json(result);
+    });
     console.log("get called !")
 };
 
 const addUser = (req, res, next) => {
-    /*var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "80221474",
-        insecureAuth: true,
-        database: "thogakade"
-    });
 
-    con.connect(function (err) {
-        if (err) throw err;
-        console.log("Connected!");
-    });*/
-    const insertQuery = "INSERT INTO customer (customerId, Name, address, salary) VALUES (?, ?, ?, ?)";
+    const id = req.body.id;
+    const name = req.body.name;
+    const address = req.body.address;
+    const salary = req.body.salary;
+
+    console.log(id,name,address,salary);
+
+    res.json({massage:'ok'});
+
+   /* const insertQuery = "INSERT INTO customer (customerId, Name, address, salary) VALUES (?, ?, ?, ?)";
     const values = ['C0022', 'express sina', '987 dubai St', 40000.00];
 
     connection.query(insertQuery, values, function (err, result) {
         if (err) throw err;
         console.log("Number of records inserted: " + result.affectedRows);
         res.json({massage:'ok'});
-    });
+    });*/
 }
 
 const updateUser = (req, res, next) => {
