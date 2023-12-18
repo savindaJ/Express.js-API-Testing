@@ -1,11 +1,12 @@
 const User = require('./modal')
 
 const getUsers = (req,res,next)=>{
-    User.find().then(responce=>{
-        res.json({responce})
-    }).catch(err=>{
-        res.json({massage:err})
-    })
+    // User.find().then(responce=>{
+    //     res.json({responce})
+    // }).catch(err=>{
+    //     res.json({massage:err})
+    // });
+    res.json({state:"ok"})
 };
 
 const addUser = (req,res,next)=>{
