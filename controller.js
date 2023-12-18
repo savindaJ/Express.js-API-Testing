@@ -1,16 +1,49 @@
-const users = [{id:'U001',name:'kamal'},{
-    id:'U002',
-    name:'savinda'
-}];
+const User = require('./modal')
 
-const getUsers = (cd)=>{
-    cd(users)
+const getUsers = (req,res,next)=>{
+    User.find().then(responce=>{
+        res.json({responce})
+    }).catch(err=>{
+        res.json({massage:err})
+    })
 };
 
-const getUserById = (id,cd)=>{
-    const usr = users.find(usr=> usr.id==id);
-    cd(usr);
-};
+const addUser = (req,res,next)=>{
+    const user = new User({
+        id:req.body.id,
+        name:req.body.name
+    });
 
+    user.save().then(responce=>{
+        res.json({responce})
+    }).catch(err=>{
+        res.json({massage:err})
+    })
+}
+
+const updateUser = (req,res,next)=>{
+    const id = req.body.id;
+    const name = req.body.name; 
+
+    User.updateOne({id:id},{$set:{name:name}}).then(responce=>{
+        res.json({responce})
+    }).catch(err=>{
+        res.json({massage:err})
+    });
+}
+
+const deleteUser = (req,res,next)=>{
+    const id = req.body.id;
+
+    User.deleteOne({
+        id:id
+    }).then(responce=>{
+        res.json({responce})
+    }).catch(err=>{
+        res.json({massage:err})
+    });
+}
 exports.getUsers = getUsers;
-exports.getUserById = getUserById;   
+exports.deleteUser = deleteUser;
+exports.addUser = addUser;
+exports.updateUser = updateUser;   
