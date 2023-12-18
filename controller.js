@@ -35,7 +35,7 @@ const updateUser = (req, res, next) => {
     const address = req.body.address;
     const salary = req.body.salary;
 
-
+    const insertQuery = "UPDATE customer SET Name=? ,address=?, salary=? WHERE customerId=?";
 
 }
 
