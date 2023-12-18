@@ -4,14 +4,17 @@ console.log("internal calling");
 
 var mysql = require('mysql2');
     
-    var con = mysql.createConnection({
+    const con = mysql.createConnection({
       host: "localhost",
       user: "root",
       password: "80221474",
-      insecureAuth : true
+      insecureAuth : true,
+        database:"thogakade"
     });
     
     con.connect(function(err) {
       if (err) throw err;
       console.log("Connected!");
     });
+
+    module.exports = con;
